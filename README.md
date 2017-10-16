@@ -10,4 +10,4 @@ Allows user to:
   
 Relational Model
 
-![Alt text](/RelationshipModel.png?raw=true "Optional Title")
+![Alt text](/RelationalModel.png?raw=true "Optional Title")
