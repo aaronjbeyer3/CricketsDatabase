@@ -7,3 +7,7 @@ Allows user to:
 - Download Views of Data
   - Download CSV file that contains a set of data based of different criteria
   - There will be multiple options to download
+  
+Relational Model
+
+![Alt text](/RelationshipModel.png?raw=true "Optional Title")
