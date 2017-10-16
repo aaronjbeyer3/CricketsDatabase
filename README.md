@@ -1,4 +1,11 @@
 # CricketsDatabase
+
+Relational Model
+
+![Alt text](/RelationalModel.png?raw=true "Optional Title")
+
+
+
 Organize data from Cricket Research in the Biology Department.
 Allows user to:
 - Upload Data
@@ -7,7 +14,3 @@ Allows user to:
 - Download Views of Data
   - Download CSV file that contains a set of data based of different criteria
   - There will be multiple options to download
-  
-Relational Model
-
-![Alt text](/RelationalModel.png?raw=true "Optional Title")
