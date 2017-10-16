@@ -4,8 +4,6 @@ Relational Model
 
 ![Alt text](/RelationalModel.png?raw=true "Optional Title")
 
-
-
 Organize data from Cricket Research in the Biology Department.
 Allows user to:
 - Upload Data
