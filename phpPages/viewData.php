@@ -35,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <p><span class="error">* required field.</span></p>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-  <p>Current Tables: Cricket, TestInstance, Test, Project, Observer, CricketTestInstance</p><br><br>
   Table Name: 
   <select name="tname">
     <option value="">Select Table</option>
@@ -53,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Data From <?php echo $name;?> Table:</h1>
 
 <?php
-// Only query the database if the name is valid
+// Only query the database if the table name is valid
 if($valid == 1)
 {
 	// Connection string
