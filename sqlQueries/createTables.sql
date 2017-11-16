@@ -59,8 +59,16 @@ FOREIGN KEY (testInstanceID) REFERENCES TestInstance(ID) ON DELETE CASCADE);
 |INSERT TEST ROWS| 
 */---------------+
 
-INSERT INTO Cricket VALUES (1, 'AD_CS2_134_132_23', 134, 132);
-INSERT INTO Cricket VALUES (2, 'AD_CS2_102_114_81', 102, 114);
+--I inserted the mother and father values with a ton of substrings because something similar will have to be done upon csv upload.
+-- So it was just to practice the concept and get it working.
+INSERT INTO Cricket VALUES 
+(1,
+'AD_CS2_134_132_23',
+CAST(SUBSTR('AD_CS2_134_132_23', INSTR('AD_CS2_134_132_23', '_', 1, 2) + 1, INSTR('AD_CS2_134_132_23', '_', 1, 3) - INSTR('AD_CS2_134_132_23', '_', 1, 2) - 1) AS INTEGER), CAST(SUBSTR('AD_CS2_134_132_23', INSTR('AD_CS2_134_132_23', '_', 1, 3) + 1, INSTR('AD_CS2_134_132_23', '_', 1, 4) - INSTR('AD_CS2_134_132_23', '_', 1, 3) - 1) AS INTEGER));
+INSERT INTO Cricket VALUES 
+(2,
+'AD_CS2_102_114_81',
+CAST(SUBSTR('AD_CS2_102_114_81', INSTR('AD_CS2_102_114_81', '_', 1, 2) + 1, INSTR('AD_CS2_102_114_81', '_', 1, 3) - INSTR('AD_CS2_102_114_81', '_', 1, 2) - 1) AS INTEGER), CAST(SUBSTR('AD_CS2_102_114_81', INSTR('AD_CS2_102_114_81', '_', 1, 3) + 1, INSTR('AD_CS2_102_114_81', '_', 1, 4) - INSTR('AD_CS2_102_114_81', '_', 1, 3) - 1) AS INTEGER));
 
 INSERT INTO Observer VALUES (1, 'JD');
 INSERT INTO Observer VALUES (2, 'AW');
@@ -92,8 +100,8 @@ SELECT * FROM TestInstance;
 SELECT * FROM CricketTestInstance;
 
 -- Do a join that makes it all look like the example csv
-SELECT c.name AS Id, t.tName AS Test, ti.recordingTime AS [Time], ti.mass, ti.rep, ti.arena, ti.temp, ti.recordingDate, o.oName AS Observer, ti.status
-FROM TestInstance ti 
+SELECT c.name AS Id, t.tName AS Test, c.mother AS Mom, c.father AS Dad, ti.recordingTime AS testTime, ti.mass, ti.rep, ti.arena, ti.temp, ti.recordingDate AS testDate, o.oName AS Observer, ti.status
+FROM TestInstance ti
 LEFT JOIN CricketTestInstance cti ON ti.ID = cti.testInstanceID
 INNER JOIN Cricket c ON cti.cricketID = c.ID
 LEFT JOIN Test t ON ti.testID = t.ID
