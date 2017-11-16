@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<p><span class="error">* required field.</span></p>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
   Table Name: 
   <select name="tname">
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <option value="Observer">Observer Table</option>
     <option value="CricketTestInstance">CricketTestInstance Table</option>
   </select>
-  <span class="error">* <?php echo $nameErr;?></span><br><br>
+  <span class="error"><?php echo $nameErr;?></span><br><br>
   <input type="submit">
 </form><br><br>
 
