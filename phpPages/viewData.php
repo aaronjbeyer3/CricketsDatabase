@@ -71,9 +71,11 @@ if($valid == 1)
 	// Execute the query a second time because I used the fetch_all function above
 	oci_execute($stid,OCI_DEFAULT);
 
+    //---Start of data table---
     echo "<table style='border: 1px solid black'>";
+    
 	//iterate through each row
-	while ($row = oci_fetch_array($stid,OCI_ASSOC))
+	while ($row = oci_fetch_array($stid,OCI_RETURN_NULLS + OCI_ASSOC))
 	{
         echo "<tr style='border: 1px solid black'>";
 		//iterate through each item in the row and echo it
@@ -83,12 +85,11 @@ if($valid == 1)
             echo "<td style='border: 1px solid black'>&nbsp&nbsp".$item."&nbsp&nbsp</td>"; 
         }
         echo "</tr>";
-
-		//echo '<br/>';
 	}
 	oci_free_statement($stid);
     oci_close($conn);
     
+    //---End of data table---
     echo "</table>";
 }
 ?>
