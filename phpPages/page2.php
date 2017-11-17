@@ -6,9 +6,16 @@
 </style>
 </head>
 <body>
-<script type="text/javascript" src="../script/jquery.js"></script>
-<script type="text/javascript" src="../script/jquery.callback.js"></script>
-<script type="text/javascript" src="../script/ExportHTMLTable.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function(){
+            $("#export").click(function(){
+                $("#export_table").tableToCSV();
+            });
+        });
+    </script>
+
 <h1>Crickets Database: SQL Querry</h1>
 <p>(Select the table you want to view data from)</p><br>
 
@@ -73,7 +80,7 @@ if($valid == 1)
 	// Execute the query a second time because I used the fetch_all function above
 	oci_execute($stid,OCI_DEFAULT);
 ?>
-    <table style='border: 1px solid black' id = "table1">";
+    <table style='border: 1px solid black' id = "export_table">";
 	<?php
 	//iterate through each row
 	while ($row = oci_fetch_array($stid,OCI_ASSOC))
@@ -83,7 +90,7 @@ if($valid == 1)
 		foreach ($row as $item)
 		{
             //echo $item.' ';
-            echo "<td style='border: 1px solid black'>&nbsp&nbsp".$item."&nbsp&nbsp</td>"; 
+            echo "<td style='border: 1px solid black'>".$item."</td>"; 
         }
         echo "</tr>";
 
@@ -96,11 +103,8 @@ if($valid == 1)
 	
 }
 ?>
-<script type ="text/javascript">
-		var exportTable1=new ExportHTMLTable('table1');
-		</script>
+<button id="export" data-export="export">Export</button>
 		<br/>
-		<input type="button" onclick="exportTable1.exportToCSV()" value="Export to CSV"/>
-
+		
 </body>
 </html>
