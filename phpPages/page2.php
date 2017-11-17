@@ -6,8 +6,10 @@
 </style>
 </head>
 <body>
-
-<h1>Crickets Database: View Data</h1>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/jquery.callback.js"></script>
+<script type="text/javascript" src="../script/ExportHTMLTable.js"></script>
+<h1>Crickets Database: SQL Querry</h1>
 <p>(Select the table you want to view data from)</p><br>
 
 <?php
@@ -70,8 +72,9 @@ if($valid == 1)
 
 	// Execute the query a second time because I used the fetch_all function above
 	oci_execute($stid,OCI_DEFAULT);
-
-    echo "<table style='border: 1px solid black'>";
+?>
+    <table style='border: 1px solid black' id = "table1">";
+	<?php
 	//iterate through each row
 	while ($row = oci_fetch_array($stid,OCI_ASSOC))
 	{
@@ -90,8 +93,14 @@ if($valid == 1)
     oci_close($conn);
     
     echo "</table>";
+	
 }
 ?>
+<script type ="text/javascript">
+		var exportTable1=new ExportHTMLTable('table1');
+		</script>
+		<br/>
+		<input type="button" onclick="exportTable1.exportToCSV()" value="Export to CSV"/>
 
 </body>
 </html>
