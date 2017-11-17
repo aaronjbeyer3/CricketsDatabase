@@ -6,6 +6,7 @@
 </style>
 </head>
 <body>
+<!--Taken from https://www.jqueryscript.net/table/jQuery-Plugin-To-Convert-HTML-Table-To-CSV-tabletoCSV.html -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
     <script>
