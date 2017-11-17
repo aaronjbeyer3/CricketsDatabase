@@ -20,12 +20,67 @@
 <h1>Crickets Database: Download Data</h1>
 <p>(currently all data in the database joined together)</p><br>
 
-<h1>All Data In Table:</h1>
+<?php
+//define variables
+$nameErr = "";
+$name = "";
+$cValue = "";
+$cValueErr = "";
+$valid = 0;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["tname"]))
+    $nameErr = "Criteria is required";
+  else
+  {
+    $name = $_POST["tname"];
+    $valid++;
+  }
+  if (empty($_POST["cName"]))
+    $cValueErr = "Value is required";
+  else
+  {
+    $cValue = $_POST["cName"];
+
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z0-9 ]*$/",$cValue)) {
+        $cValueErr = "Only letters and white space allowed";
+    }
+    else
+        $valid++;
+  }
+}
+?>
+
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+  Criteria: 
+  <select name="tname">
+    <option value="">Select Table</option>
+    <option value="t.tname">Test Name</option>
+    <option value="c.ID">Cricket ID</option>
+    <option value="o.oName">Observer</option>
+    <option value="ti.arena">Arena</option>
+  </select>
+  <span class="error"><?php echo $nameErr;?></span> = 
+  <input type="text" name="cName">
+  <span class="error"><?php echo $cValueErr;?></span><br><br>
+  <input type="submit">
+</form><br><br>
+
+<h1>Results:</h1>
 
 <table style='border: 1px solid black' id = "export_table">
 <?php
+if($valid == 2)
+{
     // Connection string
     $conn = oci_connect('aabeyer', 'Piggies3!', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
+
+    $criteria = "";
+    if($name == "c.ID" OR $name == "ti.arena")
+        $criteria = "WHERE " . $name . " = " . $cValue;
+    else
+        $criteria = "WHERE " . $name . " = '" . $cValue . "'";
 
     $query = "SELECT c.name AS Id, t.tName AS Test, c.mother AS Mom, " .
     "c.father AS Dad, ti.recordingTime AS testTime, ti.mass, ti.rep, " .
@@ -35,7 +90,7 @@
     "INNER JOIN Cricket c ON cti.cricketID = c.ID " .
     "LEFT JOIN Test t ON ti.testID = t.ID " .
     "INNER JOIN Project p ON t.projectID = p.ID " .
-    "LEFT JOIN Observer o ON ti.observerID = o.ID";
+    "LEFT JOIN Observer o ON ti.observerID = o.ID " . $criteria;
     $stid = oci_parse($conn,$query);
     oci_execute($stid,OCI_DEFAULT);
 
@@ -76,7 +131,8 @@
     oci_free_statement($stid);
     oci_close($conn);
 
-    echo ($out);  
+    echo ($out); 
+} 
 ?>
 </table><br/>
 
