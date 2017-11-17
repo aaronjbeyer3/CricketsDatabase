@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h1>Data From <?php echo $name;?> Table:</h1>
 
+<table style='border: 1px solid black' id='table_1'>
 <?php
 // Only query the database if the table name is valid
 if($valid == 1)
@@ -64,35 +65,44 @@ if($valid == 1)
 	// If there are no records, say so.
 	if(oci_fetch_all($stid, $res) < 1)
 	{
-		echo "No results for '" . $name ."'";
-		echo '<br/>';
+        echo "<tr style='border: 1px solid black'><td style='border: 1px solid black'>&nbsp&nbsp". "No results for '" . $name ."'&nbsp&nbsp</td></tr>";
 	}
 
 	// Execute the query a second time because I used the fetch_all function above
 	oci_execute($stid,OCI_DEFAULT);
 
     //---Start of data table---
-    echo "<table style='border: 1px solid black'>";
-    
+    $out = '';
+
+    //add column headers to table
+    $fieldIndex = 1;
+    $out .= "<tr style='border: 1px solid black'>";
+    while ($row = oci_field_name($stid,$fieldIndex))
+    {
+        $out .= "<td style='border: 1px solid black'>&nbsp&nbsp". oci_field_name($stid,$fieldIndex) ."&nbsp&nbsp</td>"; 
+        $fieldIndex++;
+    }
+    $out .= "</tr>";
+
 	//iterate through each row
 	while ($row = oci_fetch_array($stid,OCI_RETURN_NULLS + OCI_ASSOC))
 	{
-        echo "<tr style='border: 1px solid black'>";
+        $out .= "<tr style='border: 1px solid black'>";
 		//iterate through each item in the row and echo it
 		foreach ($row as $item)
 		{
             //echo $item.' ';
-            echo "<td style='border: 1px solid black'>&nbsp&nbsp".$item."&nbsp&nbsp</td>"; 
+            $out .= "<td style='border: 1px solid black'>&nbsp&nbsp".$item."&nbsp&nbsp</td>"; 
         }
-        echo "</tr>";
+        $out .= "</tr>";
 	}
 	oci_free_statement($stid);
     oci_close($conn);
-    
-    //---End of data table---
-    echo "</table>";
+
+    echo ($out);  
 }
 ?>
+</table>
 
 </body>
 </html>
