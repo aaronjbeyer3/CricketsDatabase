@@ -112,7 +112,7 @@ if($valid == 1)
     echo ($out);  
 }
 ?>
-</table>
+</table><br/>
 
 <button id="export" data-export="export">Export As CSV</button>
 
