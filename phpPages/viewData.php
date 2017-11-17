@@ -6,6 +6,15 @@
 </style>
 </head>
 <body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(function(){
+        $("#export").click(function(){
+            $("#export_table").tableToCSV();
+        });
+    });
+</script>
 
 <h1>Crickets Database: View Data</h1>
 <p>(Select the table you want to view data from)</p><br>
@@ -50,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h1>Data From <?php echo $name;?> Table:</h1>
 
-<table style='border: 1px solid black' id='table_1'>
+<table style='border: 1px solid black' id = "export_table">
 <?php
 // Only query the database if the table name is valid
 if($valid == 1)
@@ -65,7 +74,7 @@ if($valid == 1)
 	// If there are no records, say so.
 	if(oci_fetch_all($stid, $res) < 1)
 	{
-        echo "<tr style='border: 1px solid black'><td style='border: 1px solid black'>&nbsp&nbsp". "No results for '" . $name ."'&nbsp&nbsp</td></tr>";
+        echo "<tr style='border: 1px solid black'><td style='border: 1px solid black; padding: 5px'>". "No results for '" . $name ."'</td></tr>";
 	}
 
 	// Execute the query a second time because I used the fetch_all function above
@@ -79,7 +88,7 @@ if($valid == 1)
     $out .= "<tr style='border: 1px solid black'>";
     while ($row = oci_field_name($stid,$fieldIndex))
     {
-        $out .= "<td style='border: 1px solid black'>&nbsp&nbsp". oci_field_name($stid,$fieldIndex) ."&nbsp&nbsp</td>"; 
+        $out .= "<td style='border: 1px solid black; padding: 5px'>". oci_field_name($stid,$fieldIndex) ."</td>"; 
         $fieldIndex++;
     }
     $out .= "</tr>";
@@ -92,7 +101,7 @@ if($valid == 1)
 		foreach ($row as $item)
 		{
             //echo $item.' ';
-            $out .= "<td style='border: 1px solid black'>&nbsp&nbsp".$item."&nbsp&nbsp</td>"; 
+            $out .= "<td style='border: 1px solid black; padding: 5px'>".$item."</td>"; 
         }
         $out .= "</tr>";
 	}
@@ -103,6 +112,8 @@ if($valid == 1)
 }
 ?>
 </table>
+
+<button id="export" data-export="export">Export As CSV</button>
 
 </body>
 </html>
