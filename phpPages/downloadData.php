@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.error {color: #FF0000;}
-</style>
+    <input type="button" onclick="location.href='index.html';" value="Home" />
+    <input type="button" onclick="location.href='viewData.php';" value="View Data" />
+    <input type="button" onclick="location.href='downloadData.php';" value="Download Data" />
+    <style>
+        .error {color: #FF0000;}
+    </style>
 </head>
 <body>
 <!--Taken from https://www.jqueryscript.net/table/jQuery-Plugin-To-Convert-HTML-Table-To-CSV-tabletoCSV.html -->
