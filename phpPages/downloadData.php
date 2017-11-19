@@ -58,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
   Criteria: 
   <select name="tname">
-    <option value="">Select Table</option>
+    <option value="">Select Criteria</option>
+    <option value="All">All Data</option>
     <option value="t.tname">Test Name</option>
     <option value="c.ID">Cricket ID</option>
     <option value="o.oName">Observer</option>
@@ -94,6 +95,7 @@ if($valid == 2)
     "LEFT JOIN Test t ON ti.testID = t.ID " .
     "INNER JOIN Project p ON t.projectID = p.ID " .
     "LEFT JOIN Observer o ON ti.observerID = o.ID " . $criteria;
+
     $stid = oci_parse($conn,$query);
     oci_execute($stid,OCI_DEFAULT);
 
