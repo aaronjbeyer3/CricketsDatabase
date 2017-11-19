@@ -1,5 +1,5 @@
 # CricketsDatabase
-Current URL: http://students.cs.ndsu.nodak.edu/~aabeyer/Crickets/viewData.php
+Current URL: http://students.cs.ndsu.nodak.edu/~aabeyer/Crickets/
 
 Relational Model
 
