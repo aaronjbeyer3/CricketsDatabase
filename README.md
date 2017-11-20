@@ -5,7 +5,7 @@ ___
 
 Entity-Relationship Model
 
-![Alt text](/EntityRelationalModel.png?raw=true "Optional Title")
+![Alt text](/EntityRelationshipModel.png?raw=true "Optional Title")
 
 ___
 
