@@ -1,13 +1,19 @@
 # CricketsDatabase
 Current URL: http://students.cs.ndsu.nodak.edu/~aabeyer/Crickets/
 
+__________________________________________________________________
+
 Entity-Relationship Model
 
 ![Alt text](/EntityRelationalModel.png?raw=true "Optional Title")
 
+__________________________________________________________________
+
 Relational Model
 
 ![Alt text](/RelationalModel.png?raw=true "Optional Title")
+
+__________________________________________________________________
 
 Organize data from Cricket Research in the Biology Department.
 Allows user to:
