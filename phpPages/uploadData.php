@@ -11,7 +11,7 @@
         }
     </style>
 
-    <h1>Crickets Database: Download Data</h1>
+    <h1>Crickets Database: Upload Data</h1>
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>

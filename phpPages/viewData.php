@@ -16,7 +16,8 @@
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
             <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
-            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>
+            <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
+            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
         <tr>
     </table>
 </head>
