@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <input type="button" onclick="location.href='index.html';" value="Home" />
-    <input type="button" onclick="location.href='viewData.php';" value="View Data" />
-    <input type="button" onclick="location.href='downloadData.php';" value="Download Data" />
     <style>
-        .error {color: #FF0000;}
+        .error {
+            color: #FF0000;
+        }
+        td {
+            border: 1px solid black;  
+            padding: 5px;        
+        }
     </style>
+
+    <h1>Crickets Database: View Data</h1>
+    <table>
+        <tr>
+            <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>
+        <tr>
+    </table>
 </head>
 <body>
 <!--Taken from https://www.jqueryscript.net/table/jQuery-Plugin-To-Convert-HTML-Table-To-CSV-tabletoCSV.html -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    $(function(){
-        $("#export").click(function(){
-            $("#export_table").tableToCSV();
-        });
-    });
-</script>
 
-<h1>Crickets Database: View Data</h1>
-<p>(Select the table you want to view data from)</p><br>
+<h2>Choose Table</h2>
 
 <?php
 //define variables
 $nameErr = "";
 $name = "";
 $valid = 0;
+$fileCaption = "Crickets";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["tname"]))
@@ -42,6 +47,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else
     	$valid = 1;
+  }
+
+  // Set File Caption 
+  if ($name != "All")
+  {
+      if ($name == "TestInstance")
+        $fileCaption = "Crickets-Table(TestInstance)-Data";
+      else if ($name == "Cricket")
+        $fileCaption = "Crickets-Table(Cricket)-Data";
+      else if ($name == "Test")
+        $fileCaption = "Crickets-Table(Test)-Data";
+      else if ($name == "Project")
+        $fileCaption = "Crickets-Table(Project)-Data";
+      else if ($name == "Observer")
+        $fileCaption = "Crickets-Table(Observer)-Data";
+      else if ($name == "CricketTestInstance")
+        $fileCaption = "Crickets-Table(CricketTestInstance)-Data";
   }
 }
 ?>
@@ -61,9 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <input type="submit">
 </form><br><br>
 
-<h1>Data From <?php echo $name;?> Table:</h1>
+<h2>Data From <?php echo $name;?> Table:</h2>
 
-<table style='border: 1px solid black' id = "export_table">
+<table style="border: 1px solid black" id="export_table">
 <?php
 // Only query the database if the table name is valid
 if($valid == 1)
@@ -78,7 +100,7 @@ if($valid == 1)
 	// If there are no records, say so.
 	if(oci_fetch_all($stid, $res) < 1)
 	{
-        echo "<tr style='border: 1px solid black'><td style='border: 1px solid black; padding: 5px'>". "No results for '" . $name ."'</td></tr>";
+        echo "<tr><td>". "No results for '" . $name ."'</td></tr>";
 	}
 
 	// Execute the query a second time because I used the fetch_all function above
@@ -89,10 +111,10 @@ if($valid == 1)
 
     //add column headers to table
     $fieldIndex = 1;
-    $out .= "<tr style='border: 1px solid black'>";
+    $out .= "<tr>";
     while ($row = oci_field_name($stid,$fieldIndex))
     {
-        $out .= "<td style='border: 1px solid black; padding: 5px'>". oci_field_name($stid,$fieldIndex) ."</td>"; 
+        $out .= "<td>". oci_field_name($stid,$fieldIndex) ."</td>"; 
         $fieldIndex++;
     }
     $out .= "</tr>";
@@ -100,12 +122,12 @@ if($valid == 1)
 	//iterate through each row
 	while ($row = oci_fetch_array($stid,OCI_RETURN_NULLS + OCI_ASSOC))
 	{
-        $out .= "<tr style='border: 1px solid black'>";
+        $out .= "<tr>";
 		//iterate through each item in the row and echo it
 		foreach ($row as $item)
 		{
             //echo $item.' ';
-            $out .= "<td style='border: 1px solid black; padding: 5px'>".$item."</td>"; 
+            $out .= "<td>".$item."</td>"; 
         }
         $out .= "</tr>";
 	}
@@ -117,6 +139,13 @@ if($valid == 1)
 ?>
 </table><br/>
 
+<script>
+    $(function(){
+        $("#export").click(function(){
+            $("#export_table").tableToCSV("<?php echo $fileCaption ?>");
+        });
+    });
+</script>
 <button id="export" data-export="export">Export As CSV</button>
 
 </body>

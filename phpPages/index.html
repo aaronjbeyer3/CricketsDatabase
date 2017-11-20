@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <input type="button" onclick="location.href='index.html';" value="Home" />
-    <input type="button" onclick="location.href='viewData.php';" value="View Data" />
-    <input type="button" onclick="location.href='downloadData.php';" value="Download Data" />
+    <style>
+        td {
+            border: 1px solid black;  
+            padding: 5px;        
+        }
+    </style>
+    <h1>Crickets Database: Home</h1>
+    <table>
+        <tr>
+            <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>
+        <tr>
+    </table>
 </head>
 <body>
 
-<h1>Crickets Database</h1>
 <p>(Database for cricket experiments (2016-present) by Dr. Ned Dochtermann)</p><br>
 
-<h1>Select Page:</h1>
+<h2>Pages:</h2>
 
 <input type="button" onclick="location.href='viewData.php';" value="View Data" />
 <p>
@@ -19,7 +29,7 @@
 
 <input type="button" onclick="location.href='downloadData.php';" value="Download Data" />
 <p>
-    Download the current data displayed together in one table. Filter the data to download or download all data currently in the database. Downloads are in a .csv file format.
+    Download the current data displayed together in one table. Filter the data or download all data currently in the database. Downloads are in a .csv file format.
 </p><br>
 
 </body>
