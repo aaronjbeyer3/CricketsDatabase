@@ -1,7 +1,7 @@
 # CricketsDatabase
 Current URL: http://students.cs.ndsu.nodak.edu/~aabeyer/Crickets/
 
-_
+__
 
 Entity-Relationship Model
 
