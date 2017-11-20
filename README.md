@@ -1,6 +1,10 @@
 # CricketsDatabase
 Current URL: http://students.cs.ndsu.nodak.edu/~aabeyer/Crickets/
 
+Entity-Relationship Model
+
+![Alt text](/EntityRelationalModel.png?raw=true "Optional Title")
+
 Relational Model
 
 ![Alt text](/RelationalModel.png?raw=true "Optional Title")
