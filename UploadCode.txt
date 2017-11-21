@@ -1,0 +1,60 @@
+<html>
+<body>
+
+<?php
+
+   include('connector.php');
+
+    if(!empty($_POST)){
+        if ($_FILES["file"]["error"] > 0){
+          echo "Error: " . $_FILES["file"]["error"] . "<br />";
+        }
+        else{
+          $f = file($_FILES["file"]["tmp_name"]);
+          foreach($f as $key => $value){
+            // cut the whitespaces from the beginning and end
+            $value = trim($value);
+            $array = explode(",",$value);
+            
+            // trim the values for the database
+            array_walk($array,trim);
+            $query = "insert into table (ORNO,DDAT,CHARGE) values ('$array[0]','$array[1]','$array[2]')";
+            $a[] = $query; 
+          }
+        }    
+        
+       
+        // THE INSERT PART
+        foreach ($a as $v) {
+        $s = oci_parse($db_conn,$a);
+        $r = oci_execute($s); // Committed
+        }
+
+    }
+?>
+
+<form action="index.php" method="post" enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file" /> 
+<input type="submit" name="submit" value="Submit" />
+</form>
+
+</body>
+</html>
+
+
+
+
+OTHER CODE
+
+// THE INSERT PART
+foreach ($a as $v) {
+$s = oci_parse($db_conn,$a) or die("error parsing");
+$r = oci_execute($s) or die("error cimmiting"); // Committed
+// echo the inserted query
+echo"INSERTED: $v";
+}
+
+$cmdstr = "ALTER SESSION SET NLS_DATE_FORMAT ='DD-MM-YYYY'";
+$parsed=ociparse($db_conn, $cmdstr);
+ociexecute($parsed);
