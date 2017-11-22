@@ -94,7 +94,7 @@ if($valid == 1)
 	// Connection string
 	$conn = oci_connect('aabeyer', 'Piggies3!', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(Host=db2.ndsu.edu)(Port=1521)))(CONNECT_DATA=(SID=cs)))');
 
-	$query = "SELECT * FROM " . $name;
+	$query = "SELECT * FROM " . $name . " ORDER BY ID";
 	$stid = oci_parse($conn,$query);
 	oci_execute($stid,OCI_DEFAULT);
 
