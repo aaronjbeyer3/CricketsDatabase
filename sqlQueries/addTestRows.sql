@@ -23,9 +23,9 @@ INSERT INTO Test VALUES (1, 'OF', 1);
 INSERT INTO Test VALUES (2, 'AP', 1);
 
 INSERT INTO TestInstance VALUES 
-(1, 2, '9:52', null, 1, 1, 27, TO_DATE('8/4/2016', 'MM/DD/YYYY'), 1, '');
+(1, 2, '9:52', '', 1, 1, 27, TO_DATE('8/4/2016', 'MM/DD/YYYY'), 1, '');
 INSERT INTO TestInstance VALUES 
-(2, 2, '9:52', null, 1, 2, 27, TO_DATE('8/4/2016', 'MM/DD/YYYY'), 1, '');
+(2, 2, '9:52', '', 1, 2, 27, TO_DATE('8/4/2016', 'MM/DD/YYYY'), 1, '');
 
 INSERT INTO CricketTestInstance VALUES (1, 1, 1);
 INSERT INTO CricketTestInstance VALUES (2, 2, 2);

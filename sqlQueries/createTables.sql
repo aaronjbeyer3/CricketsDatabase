@@ -30,7 +30,7 @@ CREATE TABLE TestInstance
 ( ID integer NOT NULL,
 testID integer NOT NULL,
 recordingTime varchar(5),
-mass integer,
+mass varchar(10),
 rep integer NOT NULL,
 arena integer NOT NULL,
 temp integer,
