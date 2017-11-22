@@ -113,7 +113,9 @@ if($valid == 1)
             " INNER JOIN Cricket c ON cti.cricketID = c.ID" .
             " LEFT JOIN Test t ON ti.testID = t.ID" .
             " INNER JOIN Project p ON t.projectID = p.ID" .
-            " LEFT JOIN Observer o ON ti.observerID = o.ID " . $criteria;
+            " LEFT JOIN Observer o ON ti.observerID = o.ID " . 
+            $criteria .
+            " ORDER BY testDate, testTime";
 
     $stid = oci_parse($conn,$query);
     oci_execute($stid,OCI_DEFAULT);
