@@ -15,16 +15,16 @@
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
+            <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
+            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
             <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
             <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
-            <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
-            <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>       
         <tr>
     </table>
 </head>
 <body>
 
-<h2>Select Download Option</h2>
+<h2>Choose Delete Option</h2>
 
 <?php
 // Define variables
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
   Delete Option: 
   <select name="tname">
-    <option value="">Select Delete Option</option>
+    <option value="">Select Option</option>
     <option value="test">Delete Test Data Only</option>
     <option value="all">Delete All Data (including table data)</option>
   </select>

@@ -11,10 +11,10 @@
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
-            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
-            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
             <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
             <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
         <tr>
     </table>
 </head>
@@ -22,12 +22,7 @@
 
 <p>(Database for cricket experiments (2016-present) by Dr. Ned Dochtermann)</p><br>
 
-<h2>Pages:</h2>
-
-<input type="button" onclick="location.href='viewData.php';" value="View Data" />
-<p>
-    View the current data in each table in the Crickets database. Download table data as a .csv file if desired.
-</p><br>
+<h2>Database Functions:</h2>
 
 <input type="button" onclick="location.href='uploadData.php';" value="Upload Data" />
 <p>
@@ -37,6 +32,16 @@
 <input type="button" onclick="location.href='downloadData.php';" value="Download Data" />
 <p>
     Download the current data displayed together in one table. Filter the data or download all data currently in the database. Downloads are in a .csv file format.
+</p><br><br>
+
+<input type="button" onclick="location.href='viewData.php';" value="View Data" />
+<p>
+    View the current data in each table in the Crickets database. Download table data as a .csv file if desired.
+</p><br>
+
+<input type="button" onclick="location.href='deleteData.php';" value="Delete Data" />
+<p>
+    Delete current data in the database. Either delete only test data or all data (crickets, observers, projects, etc.).
 </p><br>
 
 </body>

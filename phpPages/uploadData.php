@@ -15,10 +15,10 @@
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
-            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
-            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
             <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
             <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td>  
         <tr>
     </table>
 </head>
@@ -27,7 +27,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
 
-<h2>Test</h2>
+<h2>Choose File, Project and Test</h2>
 
 <?php
 if(!empty($_POST))
@@ -226,7 +226,7 @@ if(!empty($_POST))
                         echo "<br />Test Table:<br />";
                         
                         // Determine test_ID
-                        $query = "SELECT * FROM Test WHERE tName = '$tName'";
+                        $query = "SELECT * FROM Test WHERE tName = '$tName' AND projectID = $project_ID";
 
                         $stid = oci_parse($conn,$query);
                         oci_execute($stid,OCI_DEFAULT);
@@ -305,17 +305,22 @@ if(!empty($_POST))
 ?>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
-<span class="error"><?php echo $fileErr;?></span><br>
 <label for="file">Filename:</label>
-<input type="file" name="file" id="file" /><br><br>
+<input type="file" name="file" id="file" /><br>
+<span class="error"><?php echo $fileErr;?></span><br><br>
 Project: <select name="pname">
     <option value="">Select Project</option>
     <option value="AD">AD</option>
+    <option value="P2">P2</option>
+    <option value="P3">P3</option>
 </select><span class="error"><?php echo $pNameErr;?></span><br>
 Test: <select name="tname">
     <option value="">Select Test</option>
     <option value="AP">AP</option>
     <option value="OF">OF</option>
+    <option value="T3">T3</option>
+    <option value="T4">T4</option>
+    <option value="T5">T5</option>
 </select><span class="error"><?php echo $tNameErr;?></span><br><br>
 <input type="submit" name="submit" value="Submit" />
 </form>

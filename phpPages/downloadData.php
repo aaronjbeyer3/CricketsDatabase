@@ -15,10 +15,10 @@
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
-            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
-            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
             <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
             <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
         <tr>
     </table>
 </head>
@@ -27,7 +27,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
 
-<h2>Filter Data (Optional)</h2>
+<h2>Choose Filter (Optional)</h2>
 
 <?php
 // Define variables
@@ -73,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $fileCaption = "Crickets-FILTERED(Observer)-Data";
     else if ($name == "ti.arena")
         $fileCaption = "Crickets-FILTERED(Arena)-Data";
+    else if ($name == "p.projName")
+        $fileCaption = "Crickets-FILTERED(Project)-Data";
   }   
 }
 ?>
@@ -83,8 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     <option value="All">All Data</option>
     <option value="t.tname">Test Name</option>
     <option value="c.ID">Cricket ID</option>
-    <option value="o.oName">Observer</option>
-    <option value="ti.arena">Arena</option>
+    <option value="p.projName">Project Name</option>
+    <option value="o.oName">Observer Name</option>
+    <option value="ti.arena">Arena Number</option>
   </select> =
   <input type="text" name="cName">
   <span class="error"><?php echo $cValueErr;?></span><br><br>
@@ -92,6 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 </form><br><br>
 
 <h2><?php echo $ResultsType ?></h2>
+
+<button id="export" data-export="export">Export As CSV</button><br><br>
 
 <table style='border: 1px solid black' id = "export_table">
 <?php
@@ -106,7 +111,7 @@ if($valid == 1)
     else if ($name != "All")
         $criteria = "WHERE " . $name . " = '" . $cValue . "'";
 
-    $query = "SELECT c.name AS Id, t.tName AS Test, c.mother AS Mom," .
+    $query = "SELECT c.name AS Id, p.projName AS Project, t.tName AS Test, c.mother AS Mom," .
             " c.father AS Dad, ti.recordingTime AS testTime, ti.mass, ti.rep," .
             " ti.arena, ti.temp, ti.recordingDate AS testDate, o.oName AS Observer, ti.status" .
             " FROM TestInstance ti" .
@@ -176,7 +181,6 @@ if($valid == 1)
         });
     });
 </script>
-<button id="export" data-export="export">Export As CSV</button>
 
 </body>
 </html>

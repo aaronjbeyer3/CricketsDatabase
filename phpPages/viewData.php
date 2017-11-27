@@ -15,10 +15,10 @@
     <table>
         <tr>
             <td><input type="button" onclick="location.href='index.html';" value="Home" /></td>
-            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
-            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td> 
             <td><input type="button" onclick="location.href='uploadData.php';" value="Upload Data" /></td>
             <td><input type="button" onclick="location.href='downloadData.php';" value="Download Data" /></td>        
+            <td><input type="button" onclick="location.href='viewData.php';" value="View Data" /></td>
+            <td><input type="button" onclick="location.href='deleteData.php';" value="Delete Data" /></td>         
         <tr>
     </table>
 </head>
@@ -87,6 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Data From <?php echo $name;?> Table:</h2>
 
+<button id="export" data-export="export">Export As CSV</button><br><br>
+
 <table style="border: 1px solid black" id="export_table">
 <?php
 // Only query the database if the table name is valid
@@ -148,7 +150,7 @@ if($valid == 1)
         });
     });
 </script>
-<button id="export" data-export="export">Export As CSV</button>
+
 
 </body>
 </html>
