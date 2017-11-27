@@ -27,7 +27,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
 
-<h2>Choose Filter (Optional)</h2>
+<h2>Choose Filter (Optional):</h2>
 
 <?php
 // Define variables
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <button id="export" data-export="export">Export As CSV</button><br><br>
 
-<h2>Preview</h2>
+<h2>Preview:</h2>
 
 <table style='border: 1px solid black' id = "export_table">
 <?php

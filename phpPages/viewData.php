@@ -27,7 +27,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
 
-<h2>Choose Table</h2>
+<h2>Choose Table:</h2>
 
 <?php
 //define variables

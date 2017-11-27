@@ -24,7 +24,7 @@
 </head>
 <body>
 
-<h2>Choose Delete Option</h2>
+<h2>Choose Delete Option:</h2>
 
 <?php
 // Define variables
