@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   <select name="tname">
     <option value="">Select Option</option>
     <option value="test">Delete Test Data Only</option>
-    <option value="all">Delete All Data (including table data)</option>
+    <option value="all">Delete All Data (Crickets, Observers, etc.)</option>
   </select>
   <span class="error"><?php echo $nameErr;?></span><br><br>
   <input type="submit">
