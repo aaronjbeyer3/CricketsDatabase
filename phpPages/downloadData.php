@@ -98,6 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <button id="export" data-export="export">Export As CSV</button><br><br>
 
+<h2>Preview</h2>
+
 <table style='border: 1px solid black' id = "export_table">
 <?php
 if($valid == 1)
