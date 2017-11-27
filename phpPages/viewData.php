@@ -34,6 +34,7 @@
 $nameErr = "";
 $name = "";
 $valid = 0;
+$noResultsMessage = false;
 $fileCaption = "Crickets";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -104,7 +105,7 @@ if($valid == 1)
 	// If there are no records, say so.
 	if(oci_fetch_all($stid, $res) < 1)
 	{
-        echo "<tr><td>". "No results for '" . $name ."'</td></tr>";
+        $noResultsMessage = true;
 	}
 
 	// Execute the query a second time because I used the fetch_all function above
@@ -142,6 +143,12 @@ if($valid == 1)
 }
 ?>
 </table><br/>
+
+<?php
+if($valid == 1)
+    if($noResultsMessage)
+        echo "No results for '" . $name . "' table."
+?>
 
 <script>
     $(function(){

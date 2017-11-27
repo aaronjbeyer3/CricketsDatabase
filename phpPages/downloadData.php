@@ -35,6 +35,7 @@ $name = "All";
 $cValue = "";
 $cValueErr = "";
 $valid = 1;
+$noResultsMessage = false;
 $ResultsType = "All Data (Default):";
 $fileCaption = "Crickets-ALL-Data";
 
@@ -131,7 +132,7 @@ if($valid == 1)
     // If there are no records, say so.
     if(oci_fetch_all($stid, $res) < 1)
     {
-        echo "<tr><td>". "No results for '" . $name ."'</td></tr>";
+        $noResultsMessage = true;
     }
 
     // Execute the query a second time because I used the fetch_all function above
@@ -174,7 +175,12 @@ if($valid == 1)
 } 
 ?>
 </table><br/>
-<!-- USED TO DEBUG QUERY <p><?php echo $query ?></p> -->
+
+<?php
+if($valid == 1)
+    if($noResultsMessage)
+        echo "No results for '" . $name . "' table."
+?>
 
 <script>
     $(function(){
