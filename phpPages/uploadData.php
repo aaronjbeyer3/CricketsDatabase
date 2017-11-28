@@ -27,7 +27,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="./jquery.tabletoCSV.js" type="text/javascript" charset="utf-8"></script>
 
-<h2>Choose File, Project, Test:</h2>
+<h2>First 10 columns of .csv MUST follow format below:</h2>
+<img src="UploadFormat.png" alt="Upload Format Example">
+
+<h2>Choose File (.csv), Project, Test:</h2>
 
 <?php
 if(!empty($_POST))
@@ -38,6 +41,7 @@ if(!empty($_POST))
     $tNameErr = "";
     $tName = "";
     $fieldsValid = true;
+    $columnHeadersValid = true;
     $fileErr = "";
 
     //Set this to true in order to debug the insert statements!
@@ -101,12 +105,40 @@ if(!empty($_POST))
                     
                     // trim the values for the database
                     array_walk($array, trim);
+
+                    // check/validate column headers
+                    if($array[0] != "")
+                        $columnHeadersValid = false;
+                    else if($array[1] != "")
+                        $columnHeadersValid = false;
+                    else if($array[2] != "Id")
+                        $columnHeadersValid = false;
+                    else if($array[3] != "Time")
+                        $columnHeadersValid = false;
+                    else if($array[4] != "Mass")
+                        $columnHeadersValid = false;
+                    else if($array[5] != "Rep")
+                        $columnHeadersValid = false;
+                    else if($array[6] != "Arena")
+                        $columnHeadersValid = false;
+                    else if($array[7] != "Temp")
+                        $columnHeadersValid = false;
+                    else if($array[8] != "Date")
+                        $columnHeadersValid = false;
+                    else if($array[9] != "Observer")
+                        $columnHeadersValid = false;
+                    else if($array[10] != "Status")
+                        $columnHeadersValid = false;
+
+                    if(!$columnHeadersValid)
+                        $fileErr = "csv columns DO NOT match correct upload format.";
+
                     $query = "Fields that will be inserted into the databse: $array[2], $array[3], $array[4], $array[5], $array[6], $array[7], $array[8], $array[9], $array[10]";
                     if($debugMode) echo "$query<br /><br />";
 
                     $firstLine = false;
                 }
-                else // Loop through each record
+                else if ($columnHeadersValid) // Loop through each record (only if valid though)
                 {
                     // cut the whitespaces from the beginning and end
                     $value = trim($value);
@@ -115,7 +147,6 @@ if(!empty($_POST))
 
                     //WRITE QUERIES
                     if($debugMode) echo "============================================ NEW RECORD ============================================<br />";
-
                     
                     // Cricket Table ===============================================================================================
                     if($debugMode) echo "Cricket Table:<br />";
@@ -152,7 +183,6 @@ if(!empty($_POST))
                     else
                         if($debugMode) echo "Cricket already exists<br />";                    
                     if($debugMode) echo "Cricket ID from database: $cricketID<br />";
-
 
                     // Observer Table ===============================================================================================
                     if($debugMode) echo "<br />Observer Table:<br />";
@@ -326,11 +356,11 @@ if(!empty($_POST))
 
 <?php
     //Info about upload
-    if($fieldsValid)
+    if($fieldsValid && $fileErr == "" && $columnHeadersValid)
     {
         echo "<h2>Upload Successful!</h2>";
         echo "" . $newTestInstances . " new records added to test data.";
-    }       
+    }    
 ?>
 
 </body>

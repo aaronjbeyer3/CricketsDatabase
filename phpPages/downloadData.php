@@ -179,7 +179,7 @@ if($valid == 1)
 <?php
 if($valid == 1)
     if($noResultsMessage)
-        echo "No results for '" . $name . "' table."
+        echo "No results for chosen filter.";
 ?>
 
 <script>
